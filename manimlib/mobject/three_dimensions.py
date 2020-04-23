@@ -9,27 +9,23 @@ from manimlib.utils.space_ops import z_to_vector
 
 
 class ThreeDVMobject(VMobject):
-    CONFIG = {
-        "shade_in_3d": True,
-    }
+    shade_in_3d = True
 
 
 class ParametricSurface(VGroup):
-    CONFIG = {
-        "u_min": 0,
-        "u_max": 1,
-        "v_min": 0,
-        "v_max": 1,
-        "resolution": 32,
-        "surface_piece_config": {},
-        "fill_color": BLUE_D,
-        "fill_opacity": 1.0,
-        "checkerboard_colors": [BLUE_D, BLUE_E],
-        "stroke_color": LIGHT_GREY,
-        "stroke_width": 0.5,
-        "should_make_jagged": False,
-        "pre_function_handle_to_anchor_scale_factor": 0.00001,
-    }
+    u_min = 0
+    u_max = 1
+    v_min = 0
+    v_max = 1
+    resolution = 32
+    surface_piece_config = {}
+    fill_color = BLUE_D
+    fill_opacity = 1.0
+    checkerboard_colors = [BLUE_D, BLUE_E]
+    stroke_color = LIGHT_GREY
+    stroke_width = 0.5
+    should_make_jagged = False
+    pre_function_handle_to_anchor_scale_factor = 0.00001
 
     def __init__(self, func, **kwargs):
         VGroup.__init__(self, **kwargs)
@@ -101,14 +97,12 @@ class ParametricSurface(VGroup):
 
 
 class Sphere(ParametricSurface):
-    CONFIG = {
-        "resolution": (12, 24),
-        "radius": 1,
-        "u_min": 0.001,
-        "u_max": PI - 0.001,
-        "v_min": 0,
-        "v_max": TAU,
-    }
+    resolution = (12, 24)
+    radius = 1
+    u_min = 0.001
+    u_max = PI - 0.001
+    v_min = 0
+    v_max = TAU
 
     def __init__(self, **kwargs):
         ParametricSurface.__init__(
@@ -125,12 +119,10 @@ class Sphere(ParametricSurface):
 
 
 class Cube(VGroup):
-    CONFIG = {
-        "fill_opacity": 0.75,
-        "fill_color": BLUE,
-        "stroke_width": 0,
-        "side_length": 2,
-    }
+    fill_opacity = 0.75
+    fill_color = BLUE
+    stroke_width = 0
+    side_length = 2
 
     def generate_points(self):
         for vect in IN, OUT, LEFT, RIGHT, UP, DOWN:
@@ -146,9 +138,7 @@ class Cube(VGroup):
 
 
 class Prism(Cube):
-    CONFIG = {
-        "dimensions": [3, 2, 1]
-    }
+    dimensions = [3, 2, 1]
 
     def generate_points(self):
         Cube.generate_points(self)

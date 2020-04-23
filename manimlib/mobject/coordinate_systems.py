@@ -20,13 +20,12 @@ class CoordinateSystem():
     """
     Abstract class for Axes and NumberPlane
     """
-    CONFIG = {
-        "dimension": 2,
-        "x_min": -FRAME_X_RADIUS,
-        "x_max": FRAME_X_RADIUS,
-        "y_min": -FRAME_Y_RADIUS,
-        "y_max": FRAME_Y_RADIUS,
-    }
+
+    dimension = 2
+    x_min = -FRAME_X_RADIUS
+    x_max = FRAME_X_RADIUS
+    y_min = -FRAME_Y_RADIUS
+    y_max = FRAME_Y_RADIUS
 
     def coords_to_point(self, *coords):
         raise Exception("Not implemented")
@@ -127,18 +126,16 @@ class CoordinateSystem():
 
 
 class Axes(VGroup, CoordinateSystem):
-    CONFIG = {
-        "axis_config": {
-            "color": LIGHT_GREY,
-            "include_tip": True,
-            "exclude_zero_from_default_numbers": True,
-        },
-        "x_axis_config": {},
-        "y_axis_config": {
-            "label_direction": LEFT,
-        },
-        "center_point": ORIGIN,
+    axis_config = {
+        "color": LIGHT_GREY,
+        "include_tip": True,
+        "exclude_zero_from_default_numbers": True,
     }
+    x_axis_config = {}
+    y_axis_config = {
+        "label_direction": LEFT,
+    }
+    center_point = ORIGIN
 
     def __init__(self, **kwargs):
         VGroup.__init__(self, **kwargs)
@@ -203,19 +200,17 @@ class Axes(VGroup, CoordinateSystem):
 
 
 class ThreeDAxes(Axes):
-    CONFIG = {
-        "dimension": 3,
-        "x_min": -5.5,
-        "x_max": 5.5,
-        "y_min": -5.5,
-        "y_max": 5.5,
-        "z_axis_config": {},
-        "z_min": -3.5,
-        "z_max": 3.5,
-        "z_normal": DOWN,
-        "num_axis_pieces": 20,
-        "light_source": 9 * DOWN + 7 * LEFT + 10 * OUT,
-    }
+    dimension = 3
+    x_min = -5.5
+    x_max = 5.5
+    y_min = -5.5
+    y_max = 5.5
+    z_axis_config = {}
+    z_min = -3.5
+    z_max = 3.5
+    z_normal = DOWN
+    num_axis_pieces = 20
+    light_source = 9 * DOWN + 7 * LEFT + 10 * OUT
 
     def __init__(self, **kwargs):
         Axes.__init__(self, **kwargs)
@@ -257,31 +252,29 @@ class ThreeDAxes(Axes):
 
 
 class NumberPlane(Axes):
-    CONFIG = {
-        "axis_config": {
-            "stroke_color": WHITE,
-            "stroke_width": 2,
-            "include_ticks": False,
-            "include_tip": False,
-            "line_to_number_buff": SMALL_BUFF,
-            "label_direction": DR,
-            "number_scale_val": 0.5,
-        },
-        "y_axis_config": {
-            "label_direction": DR,
-        },
-        "background_line_style": {
-            "stroke_color": BLUE_D,
-            "stroke_width": 2,
-            "stroke_opacity": 1,
-        },
-        # Defaults to a faded version of line_config
-        "faded_line_style": None,
-        "x_line_frequency": 1,
-        "y_line_frequency": 1,
-        "faded_line_ratio": 1,
-        "make_smooth_after_applying_functions": True,
+    axis_config = {
+        "stroke_color": WHITE,
+        "stroke_width": 2,
+        "include_ticks": False,
+        "include_tip": False,
+        "line_to_number_buff": SMALL_BUFF,
+        "label_direction": DR,
+        "number_scale_val": 0.5,
     }
+    y_axis_config = {
+        "label_direction": DR,
+    }
+    background_line_style = {
+        "stroke_color": BLUE_D,
+        "stroke_width": 2,
+        "stroke_opacity": 1,
+    }
+    # Defaults to a faded version of line_config
+    faded_line_style = None
+    x_line_frequency = 1
+    y_line_frequency = 1
+    faded_line_ratio = 1
+    make_smooth_after_applying_functions = True
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -379,10 +372,8 @@ class NumberPlane(Axes):
 
 
 class ComplexPlane(NumberPlane):
-    CONFIG = {
-        "color": BLUE,
-        "line_frequency": 1,
-    }
+    color = BLUE
+    line_frequency = 1
 
     def number_to_point(self, number):
         number = complex(number)

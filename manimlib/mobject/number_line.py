@@ -12,34 +12,32 @@ from manimlib.utils.space_ops import normalize
 
 
 class NumberLine(Line):
-    CONFIG = {
-        "color": LIGHT_GREY,
-        "x_min": -FRAME_X_RADIUS,
-        "x_max": FRAME_X_RADIUS,
-        "unit_size": 1,
-        "include_ticks": True,
-        "tick_size": 0.1,
-        "tick_frequency": 1,
-        # Defaults to value near x_min s.t. 0 is a tick
-        # TODO, rename this
-        "leftmost_tick": None,
-        # Change name
-        "numbers_with_elongated_ticks": [0],
-        "include_numbers": False,
-        "numbers_to_show": None,
-        "longer_tick_multiple": 2,
-        "number_at_center": 0,
-        "number_scale_val": 0.75,
-        "label_direction": DOWN,
-        "line_to_number_buff": MED_SMALL_BUFF,
-        "include_tip": False,
-        "tip_width": 0.25,
-        "tip_height": 0.25,
-        "decimal_number_config": {
-            "num_decimal_places": 0,
-        },
-        "exclude_zero_from_default_numbers": False,
+    color = LIGHT_GREY
+    x_min = -FRAME_X_RADIUS
+    x_max = FRAME_X_RADIUS
+    unit_size = 1
+    include_ticks = True
+    tick_size = 0.1
+    tick_frequency = 1
+    # Defaults to value near x_min s.t. 0 is a tick
+    # TODO, rename this
+    leftmost_tick = None
+    # Change name
+    numbers_with_elongated_ticks = [0]
+    include_numbers = False
+    numbers_to_show = None
+    longer_tick_multiple = 2
+    number_at_center = 0
+    number_scale_val = 0.75
+    label_direction = DOWN
+    line_to_number_buff = MED_SMALL_BUFF
+    include_tip = False
+    tip_width = 0.25
+    tip_height = 0.25
+    decimal_number_config = {
+        "num_decimal_places": 0,
     }
+    exclude_zero_from_default_numbers = False
 
     def __init__(self, **kwargs):
         digest_config(self, kwargs)
@@ -188,14 +186,13 @@ class NumberLine(Line):
 
 
 class UnitInterval(NumberLine):
-    CONFIG = {
-        "x_min": 0,
-        "x_max": 1,
-        "unit_size": 6,
-        "tick_frequency": 0.1,
-        "numbers_with_elongated_ticks": [0, 1],
-        "number_at_center": 0.5,
-        "decimal_number_config": {
-            "num_decimal_places": 1,
-        }
+    x_min = 0
+    x_max = 1
+    unit_size = 6
+    tick_frequency = 0.1
+    numbers_with_elongated_ticks = [0, 1]
+    number_at_center = 0.5
+    decimal_number_config = {
+        "num_decimal_places": 1,
     }
+

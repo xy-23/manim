@@ -53,17 +53,15 @@ def vector_coordinate_label(vector_mob, integer_labels=True,
 
 
 class Matrix(VMobject):
-    CONFIG = {
-        "v_buff": 0.8,
-        "h_buff": 1.3,
-        "bracket_h_buff": MED_SMALL_BUFF,
-        "bracket_v_buff": MED_SMALL_BUFF,
-        "add_background_rectangles_to_entries": False,
-        "include_background_rectangle": False,
-        "element_to_mobject": TexMobject,
-        "element_to_mobject_config": {},
-        "element_alignment_corner": DR,
-    }
+    v_buff = 0.8
+    h_buff = 1.3
+    bracket_h_buff = MED_SMALL_BUFF
+    bracket_v_buff = MED_SMALL_BUFF
+    add_background_rectangles_to_entries = False
+    include_background_rectangle = False
+    element_to_mobject = TexMobject
+    element_to_mobject_config = {}
+    element_alignment_corner = DR
 
     def __init__(self, matrix, **kwargs):
         """
@@ -141,22 +139,16 @@ class Matrix(VMobject):
 
 
 class DecimalMatrix(Matrix):
-    CONFIG = {
-        "element_to_mobject": DecimalNumber,
-        "element_to_mobject_config": {"num_decimal_places": 1}
-    }
+    element_to_mobject = DecimalNumber
+    element_to_mobject_config = {"num_decimal_places": 1}
 
 
 class IntegerMatrix(Matrix):
-    CONFIG = {
-        "element_to_mobject": Integer,
-    }
+    element_to_mobject = Integer
 
 
 class MobjectMatrix(Matrix):
-    CONFIG = {
-        "element_to_mobject": lambda m: m,
-    }
+    element_to_mobject = lambda m: m
 
 
 def get_det_text(matrix, determinant=None, background_rect=False, initial_scale_factor=2):

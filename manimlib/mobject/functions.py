@@ -5,14 +5,12 @@ import math
 
 
 class ParametricFunction(VMobject):
-    CONFIG = {
-        "t_min": 0,
-        "t_max": 1,
-        "step_size": 0.01,  # Use "auto" (lowercase) for automatic step size
-        "dt": 1e-8,
-        # TODO, be smarter about figuring these out?
-        "discontinuities": [],
-    }
+    t_min = 0
+    t_max = 1
+    step_size = 0.01  # Use "auto" (lowercase) for automatic step size
+    dt = 1e-8
+    # TODO be smarter about figuring these out?
+    discontinuities = []
 
     def __init__(self, function=None, **kwargs):
         # either get a function from __init__ or from CONFIG
@@ -78,11 +76,9 @@ class ParametricFunction(VMobject):
 
 
 class FunctionGraph(ParametricFunction):
-    CONFIG = {
-        "color": YELLOW,
-        "x_min": -FRAME_X_RADIUS,
-        "x_max": FRAME_X_RADIUS,
-    }
+    color = YELLOW
+    x_min = -FRAME_X_RADIUS
+    x_max = FRAME_X_RADIUS
 
     def __init__(self, function, **kwargs):
         digest_config(self, kwargs)

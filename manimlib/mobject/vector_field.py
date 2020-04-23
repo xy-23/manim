@@ -128,21 +128,19 @@ def move_points_along_vector_field(mobject, func):
 # Mobjects
 
 class VectorField(VGroup):
-    CONFIG = {
-        "delta_x": 0.5,
-        "delta_y": 0.5,
-        "x_min": int(np.floor(-FRAME_WIDTH / 2)),
-        "x_max": int(np.ceil(FRAME_WIDTH / 2)),
-        "y_min": int(np.floor(-FRAME_HEIGHT / 2)),
-        "y_max": int(np.ceil(FRAME_HEIGHT / 2)),
-        "min_magnitude": 0,
-        "max_magnitude": 2,
-        "colors": DEFAULT_SCALAR_FIELD_COLORS,
-        # Takes in actual norm, spits out displayed norm
-        "length_func": lambda norm: 0.45 * sigmoid(norm),
-        "opacity": 1.0,
-        "vector_config": {},
-    }
+    delta_x = 0.5
+    delta_y = 0.5
+    x_min = int(np.floor(-FRAME_WIDTH / 2))
+    x_max = int(np.ceil(FRAME_WIDTH / 2))
+    y_min = int(np.floor(-FRAME_HEIGHT / 2))
+    y_max = int(np.ceil(FRAME_HEIGHT / 2))
+    min_magnitude = 0
+    max_magnitude = 2
+    colors = DEFAULT_SCALAR_FIELD_COLORS
+    # Takes in actual norm spits out displayed norm
+    length_func = lambda norm: 0.45 * sigmoid(norm)
+    opacity = 1.0
+    vector_config = {}
 
     def __init__(self, func, **kwargs):
         VGroup.__init__(self, **kwargs)
@@ -187,38 +185,36 @@ class VectorField(VGroup):
 
 
 class StreamLines(VGroup):
-    CONFIG = {
-        # TODO, this is an awkward way to inherit
-        # defaults to a method.
-        "start_points_generator_config": {},
-        # Config for choosing start points
-        "x_min": -8,
-        "x_max": 8,
-        "y_min": -5,
-        "y_max": 5,
-        "delta_x": 0.5,
-        "delta_y": 0.5,
-        "n_repeats": 1,
-        "noise_factor": None,
-        # Config for drawing lines
-        "dt": 0.05,
-        "virtual_time": 3,
-        "n_anchors_per_line": 100,
-        "stroke_width": 1,
-        "stroke_color": WHITE,
-        "color_by_arc_length": True,
-        # Min and max arc lengths meant to define
-        # the color range, should color_by_arc_length be True
-        "min_arc_length": 0,
-        "max_arc_length": 12,
-        "color_by_magnitude": False,
-        # Min and max magnitudes meant to define
-        # the color range, should color_by_magnitude be True
-        "min_magnitude": 0.5,
-        "max_magnitude": 1.5,
-        "colors": DEFAULT_SCALAR_FIELD_COLORS,
-        "cutoff_norm": 15,
-    }
+    # TODO, this is an awkward way to inherit
+    # defaults to a method.
+    start_points_generator_config = {}
+    # Config for choosing start points
+    x_min = -8
+    x_max = 8
+    y_min = -5
+    y_max = 5
+    delta_x = 0.5
+    delta_y = 0.5
+    n_repeats = 1
+    noise_factor = None
+    # Config for drawing lines
+    dt = 0.05
+    virtual_time = 3
+    n_anchors_per_line = 100
+    stroke_width = 1
+    stroke_color = WHITE
+    color_by_arc_length = True
+    # Min and max arc lengths meant to define
+    # the color range, should color_by_arc_length be True
+    min_arc_length = 0
+    max_arc_length = 12
+    color_by_magnitude = False
+    # Min and max magnitudes meant to define
+    # the color range, should color_by_magnitude be True
+    min_magnitude = 0.5
+    max_magnitude = 1.5
+    colors = DEFAULT_SCALAR_FIELD_COLORS
+    cutoff_norm = 15
 
     def __init__(self, func, **kwargs):
         VGroup.__init__(self, **kwargs)
@@ -286,11 +282,9 @@ class StreamLines(VGroup):
 # varying in response to a changing vector field, and still
 # animate the resulting flow
 class ShowPassingFlashWithThinningStrokeWidth(AnimationGroup):
-    CONFIG = {
-        "n_segments": 10,
-        "time_width": 0.1,
-        "remover": True
-    }
+    n_segments = 10
+    time_width = 0.1
+    remover = True
 
     def __init__(self, vmobject, **kwargs):
         digest_config(self, kwargs)
@@ -312,14 +306,12 @@ class ShowPassingFlashWithThinningStrokeWidth(AnimationGroup):
 # TODO, this is untested after turning it from a
 # ContinualAnimation into a VGroup
 class AnimatedStreamLines(VGroup):
-    CONFIG = {
-        "lag_range": 4,
-        "line_anim_class": ShowPassingFlash,
-        "line_anim_config": {
-            "run_time": 4,
-            "rate_func": linear,
-            "time_width": 0.3,
-        },
+    lag_range = 4
+    line_anim_class = ShowPassingFlash
+    line_anim_config = {
+        "run_time": 4,
+        "rate_func": linear,
+        "time_width": 0.3,
     }
 
     def __init__(self, stream_lines, **kwargs):

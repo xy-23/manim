@@ -29,37 +29,35 @@ from manimlib.utils.space_ops import get_norm
 
 
 class VMobject(Mobject):
-    CONFIG = {
-        "fill_color": None,
-        "fill_opacity": 0.0,
-        "stroke_color": None,
-        "stroke_opacity": 1.0,
-        "stroke_width": DEFAULT_STROKE_WIDTH,
-        # The purpose of background stroke is to have
-        # something that won't overlap the fill, e.g.
-        # For text against some textured background
-        "background_stroke_color": BLACK,
-        "background_stroke_opacity": 1.0,
-        "background_stroke_width": 0,
-        # When a color c is set, there will be a second color
-        # computed based on interpolating c to WHITE by with
-        # sheen_factor, and the display will gradient to this
-        # secondary color in the direction of sheen_direction.
-        "sheen_factor": 0.0,
-        "sheen_direction": UL,
-        # Indicates that it will not be displayed, but
-        # that it should count in parent mobject's path
-        "close_new_points": False,
-        "pre_function_handle_to_anchor_scale_factor": 0.01,
-        "make_smooth_after_applying_functions": False,
-        "background_image_file": None,
-        "shade_in_3d": False,
-        # This is within a pixel
-        # TODO, do we care about accounting for
-        # varying zoom levels?
-        "tolerance_for_point_equality": 1e-6,
-        "n_points_per_cubic_curve": 4,
-    }
+    fill_color = None
+    fill_opacity = 0.0
+    stroke_color = None
+    stroke_opacity = 1.0
+    stroke_width = DEFAULT_STROKE_WIDTH
+    # The purpose of background stroke is to have
+    # something that won't overlap the fill, e.g.
+    # For text against some textured background
+    background_stroke_color = BLACK
+    background_stroke_opacity = 1.0
+    background_stroke_width = 0
+    # When a color c is set, there will be a second color
+    # computed based on interpolating c to WHITE by with
+    # sheen_factor, and the display will gradient to this
+    # secondary color in the direction of sheen_direction.
+    sheen_factor = 0.0
+    sheen_direction = UL
+    # Indicates that it will not be displayed, but
+    # that it should count in parent mobject's path
+    close_new_points = False
+    pre_function_handle_to_anchor_scale_factor = 0.01
+    make_smooth_after_applying_functions = False
+    background_image_file = None
+    shade_in_3d = False
+    # This is within a pixel
+    # TODO, do we care about accounting for
+    # varying zoom levels?
+    tolerance_for_point_equality = 1e-6
+    n_points_per_cubic_curve = 4
 
     def get_group_class(self):
         return VGroup
@@ -597,7 +595,7 @@ class VMobject(Mobject):
 
     # Information about line
     def get_cubic_bezier_tuples_from_points(self, points):
-        nppcc = VMobject.CONFIG["n_points_per_cubic_curve"]
+        nppcc = VMobject.n_points_per_cubic_curve
         remainder = len(points) % nppcc
         points = points[:len(points) - remainder]
         return np.array([
@@ -874,13 +872,11 @@ class VGroup(VMobject):
 
 
 class VectorizedPoint(VMobject):
-    CONFIG = {
-        "color": BLACK,
-        "fill_opacity": 0,
-        "stroke_width": 0,
-        "artificial_width": 0.01,
-        "artificial_height": 0.01,
-    }
+    color = BLACK
+    fill_opacity = 0
+    stroke_width = 0
+    artificial_width = 0.01
+    artificial_height = 0.01
 
     def __init__(self, location=ORIGIN, **kwargs):
         VMobject.__init__(self, **kwargs)
@@ -911,11 +907,9 @@ class CurvesAsSubmobjects(VGroup):
 
 
 class DashedVMobject(VMobject):
-    CONFIG = {
-        "num_dashes": 15,
-        "positive_space_ratio": 0.5,
-        "color": WHITE
-    }
+    num_dashes = 15
+    positive_space_ratio = 0.5
+    color = WHITE
 
     def __init__(self, vmobject, **kwargs):
         VMobject.__init__(self, **kwargs)

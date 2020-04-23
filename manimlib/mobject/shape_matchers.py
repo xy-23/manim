@@ -8,10 +8,8 @@ from manimlib.utils.config_ops import digest_config
 
 
 class SurroundingRectangle(Rectangle):
-    CONFIG = {
-        "color": YELLOW,
-        "buff": SMALL_BUFF,
-    }
+    color = YELLOW
+    buff = SMALL_BUFF
 
     def __init__(self, mobject, **kwargs):
         digest_config(self, kwargs)
@@ -22,13 +20,11 @@ class SurroundingRectangle(Rectangle):
 
 
 class BackgroundRectangle(SurroundingRectangle):
-    CONFIG = {
-        "color": BLACK,
-        "stroke_width": 0,
-        "stroke_opacity": 0,
-        "fill_opacity": 0.75,
-        "buff": 0
-    }
+    color = BLACK
+    stroke_width = 0
+    stroke_opacity = 0
+    fill_opacity = 0.75
+    buff = 0
 
     def __init__(self, mobject, **kwargs):
         SurroundingRectangle.__init__(self, mobject, **kwargs)
@@ -60,10 +56,8 @@ class BackgroundRectangle(SurroundingRectangle):
 
 
 class Cross(VGroup):
-    CONFIG = {
-        "stroke_color": RED,
-        "stroke_width": 6,
-    }
+    stroke_color = RED
+    stroke_width = 6
 
     def __init__(self, mobject, **kwargs):
         VGroup.__init__(self,
@@ -75,9 +69,7 @@ class Cross(VGroup):
 
 
 class Underline(Line):
-    CONFIG = {
-        "buff": SMALL_BUFF,
-    }
+    buff = SMALL_BUFF
 
     def __init__(self, mobject, **kwargs):
         super().__init__(LEFT, RIGHT, **kwargs)

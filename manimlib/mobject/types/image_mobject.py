@@ -15,10 +15,9 @@ class AbstractImageMobject(Mobject):
     """
     Automatically filters out black pixels
     """
-    CONFIG = {
-        "height": 2.0,
-        "pixel_array_dtype": "uint8",
-    }
+
+    height = 2.0
+    pixel_arry_dtype = 'unit8'
 
     def get_pixel_array(self):
         raise Exception("Not implemented")
@@ -44,10 +43,8 @@ class AbstractImageMobject(Mobject):
 
 
 class ImageMobject(AbstractImageMobject):
-    CONFIG = {
-        "invert": False,
-        "image_mode": "RGBA",
-    }
+    invert = False
+    image_mode = 'RGBA'
 
     def __init__(self, filename_or_array, **kwargs):
         digest_config(self, kwargs)
@@ -110,12 +107,10 @@ class ImageMobject(AbstractImageMobject):
 
 
 class ImageMobjectFromCamera(AbstractImageMobject):
-    CONFIG = {
-        "default_display_frame_config": {
-            "stroke_width": 3,
-            "stroke_color": WHITE,
-            "buff": 0,
-        }
+    default_display_frame_config = {
+        "stroke_width": 3,
+        "stroke_color": WHITE,
+        "buff": 0,
     }
 
     def __init__(self, camera, **kwargs):

@@ -10,9 +10,7 @@ from manimlib.utils.space_ops import get_norm
 
 
 class PMobject(Mobject):
-    CONFIG = {
-        "stroke_width": DEFAULT_STROKE_WIDTH,
-    }
+    stroke_width = DEFAULT_STROKE_WIDTH
 
     def reset_points(self):
         self.rgbas = np.zeros((0, 4))
@@ -187,9 +185,7 @@ class PMobject(Mobject):
 
 # TODO, Make the two implementations bellow non-redundant
 class Mobject1D(PMobject):
-    CONFIG = {
-        "density": DEFAULT_POINT_DENSITY_1D,
-    }
+    density = DEFAULT_POINT_DENSITY_1D
 
     def __init__(self, **kwargs):
         digest_config(self, kwargs)
@@ -211,9 +207,7 @@ class Mobject1D(PMobject):
 
 
 class Mobject2D(PMobject):
-    CONFIG = {
-        "density": DEFAULT_POINT_DENSITY_2D,
-    }
+    density = DEFAULT_POINT_DENSITY_2D
 
     def __init__(self, **kwargs):
         digest_config(self, kwargs)
@@ -230,12 +224,10 @@ class PGroup(PMobject):
 
 
 class PointCloudDot(Mobject1D):
-    CONFIG = {
-        "radius": 0.075,
-        "stroke_width": 2,
-        "density": DEFAULT_POINT_DENSITY_1D,
-        "color": YELLOW,
-    }
+    radius = 0.075
+    stroke_width = 2
+    density = DEFAULT_POINT_DENSITY_1D
+    color = YELLOW
 
     def __init__(self, center=ORIGIN, **kwargs):
         Mobject1D.__init__(self, **kwargs)
@@ -250,9 +242,7 @@ class PointCloudDot(Mobject1D):
 
 
 class Point(PMobject):
-    CONFIG = {
-        "color": BLACK,
-    }
+    color = BLACK
 
     def __init__(self, location=ORIGIN, **kwargs):
         PMobject.__init__(self, **kwargs)

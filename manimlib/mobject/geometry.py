@@ -44,14 +44,13 @@ class TipableVMobject(VMobject):
                 to the TipableVMobject instance's tip(s), its length etc
 
     """
-    CONFIG = {
-        "tip_length": DEFAULT_ARROW_TIP_LENGTH,
-        # TODO
-        "normal_vector": OUT,
-        "tip_style": {
-            "fill_opacity": 1,
-            "stroke_width": 0,
-        }
+
+    tip_length = DEFAULT_ARROW_TIP_LENGTH
+    # TODO
+    normal_vector = OUT
+    tip_style = {
+        "fill_opacity": 1,
+        "stroke_width": 0,
     }
     
     # Adding, Creating, Modifying tips
@@ -203,12 +202,10 @@ class TipableVMobject(VMobject):
 
 
 class Arc(TipableVMobject):
-    CONFIG = {
-        "radius": 1.0,
-        "num_components": 9,
-        "anchors_span_full_range": True,
-        "arc_center": ORIGIN,
-    }
+    radius = 1.0
+    num_components = 9
+    anchors_span_full_range = True
+    arc_center = ORIGIN
 
     def __init__(self, start_angle=0, angle=TAU / 4, **kwargs):
         self.start_angle = start_angle
@@ -304,11 +301,9 @@ class CurvedDoubleArrow(CurvedArrow):
 
 
 class Circle(Arc):
-    CONFIG = {
-        "color": RED,
-        "close_new_points": True,
-        "anchors_span_full_range": False
-    }
+    color = RED
+    close_new_points = True
+    anchors_span_full_range = False
 
     def __init__(self, **kwargs):
         Arc.__init__(self, 0, TAU, **kwargs)
@@ -336,28 +331,22 @@ class Circle(Arc):
 
 
 class Dot(Circle):
-    CONFIG = {
-        "radius": DEFAULT_DOT_RADIUS,
-        "stroke_width": 0,
-        "fill_opacity": 1.0,
-        "color": WHITE
-    }
+    radius = DEFAULT_DOT_RADIUS
+    stroke_width = 0
+    fill_opacity = 1.0
+    color = WHITE
 
     def __init__(self, point=ORIGIN, **kwargs):
         Circle.__init__(self, arc_center=point, **kwargs)
 
 
 class SmallDot(Dot):
-    CONFIG = {
-        "radius": DEFAULT_SMALL_DOT_RADIUS,
-    }
+    radius = DEFAULT_SMALL_DOT_RADIUS
 
 
 class Ellipse(Circle):
-    CONFIG = {
-        "width": 2,
-        "height": 1
-    }
+    width = 2
+    height = 1
 
     def __init__(self, **kwargs):
         Circle.__init__(self, **kwargs)
@@ -366,15 +355,13 @@ class Ellipse(Circle):
 
 
 class AnnularSector(Arc):
-    CONFIG = {
-        "inner_radius": 1,
-        "outer_radius": 2,
-        "angle": TAU / 4,
-        "start_angle": 0,
-        "fill_opacity": 1,
-        "stroke_width": 0,
-        "color": WHITE,
-    }
+    inner_radius = 1
+    outer_radius = 2
+    angle = TAU / 4
+    start_angle = 0
+    fill_opacity = 1
+    stroke_width = 0
+    color = WHITE
 
     def generate_points(self):
         inner_arc, outer_arc = [
@@ -394,21 +381,17 @@ class AnnularSector(Arc):
 
 
 class Sector(AnnularSector):
-    CONFIG = {
-        "outer_radius": 1,
-        "inner_radius": 0
-    }
+    outer_radius = 1
+    inner_radius = 0
 
 
 class Annulus(Circle):
-    CONFIG = {
-        "inner_radius": 1,
-        "outer_radius": 2,
-        "fill_opacity": 1,
-        "stroke_width": 0,
-        "color": WHITE,
-        "mark_paths_closed": False,
-    }
+    inner_radius = 1
+    outer_radius = 2
+    fill_opacity = 1
+    stroke_width = 0
+    color = WHITE
+    mark_paths_closed = False
 
     def generate_points(self):
         self.radius = self.outer_radius
@@ -421,10 +404,8 @@ class Annulus(Circle):
 
 
 class Line(TipableVMobject):
-    CONFIG = {
-        "buff": 0,
-        "path_arc": None,  # angle of arc specified here
-    }
+    buff = 0
+    path_arc = None  # angle of arc specified here
 
     def __init__(self, start=LEFT, end=RIGHT, **kwargs):
         digest_config(self, kwargs)
@@ -526,11 +507,9 @@ class Line(TipableVMobject):
 
 
 class DashedLine(Line):
-    CONFIG = {
-        "dash_length": DEFAULT_DASH_LENGTH,
-        "dash_spacing": None,
-        "positive_space_ratio": 0.5,
-    }
+    dash_length = DEFAULT_DASH_LENGTH
+    dash_spacing = None
+    positive_space_ratio = 0.5
 
     def __init__(self, *args, **kwargs):
         Line.__init__(self, *args, **kwargs)
@@ -579,10 +558,8 @@ class DashedLine(Line):
 
 
 class TangentLine(Line):
-    CONFIG = {
-        "length": 1,
-        "d_alpha": 1e-6
-    }
+    length = 1
+    d_alpha = 1e-6
 
     def __init__(self, vmob, alpha, **kwargs):
         digest_config(self, kwargs)
@@ -598,10 +575,8 @@ class TangentLine(Line):
 
 
 class Elbow(VMobject):
-    CONFIG = {
-        "width": 0.2,
-        "angle": 0,
-    }
+    width = 0.2
+    angle = 0
 
     def __init__(self, **kwargs):
         VMobject.__init__(self, **kwargs)
@@ -611,13 +586,11 @@ class Elbow(VMobject):
 
 
 class Arrow(Line):
-    CONFIG = {
-        "stroke_width": 6,
-        "buff": MED_SMALL_BUFF,
-        "max_tip_length_to_length_ratio": 0.25,
-        "max_stroke_width_to_length_ratio": 5,
-        "preserve_tip_size_when_scaling": True,
-    }
+    stroke_width = 6
+    buff = MED_SMALL_BUFF
+    max_tip_length_to_length_ratio = 0.25
+    max_stroke_width_to_length_ratio = 5
+    preserve_tip_size_when_scaling = True
 
     def __init__(self, *args, **kwargs):
         Line.__init__(self, *args, **kwargs)
@@ -686,9 +659,7 @@ class Arrow(Line):
 
 
 class Vector(Arrow):
-    CONFIG = {
-        "buff": 0,
-    }
+    buff = 0
 
     def __init__(self, direction=RIGHT, **kwargs):
         if len(direction) == 2:
@@ -709,9 +680,7 @@ class CubicBezier(VMobject):
 
 
 class Polygon(VMobject):
-    CONFIG = {
-        "color": BLUE,
-    }
+    color = BLUE
 
     def __init__(self, *vertices, **kwargs):
         VMobject.__init__(self, **kwargs)
@@ -760,9 +729,7 @@ class Polygon(VMobject):
 
 
 class RegularPolygon(Polygon):
-    CONFIG = {
-        "start_angle": None,
-    }
+    start_angle = None
 
     def __init__(self, n=6, **kwargs):
         digest_config(self, kwargs, locals())
@@ -782,12 +749,10 @@ class Triangle(RegularPolygon):
 
 
 class ArrowTip(Triangle):
-    CONFIG = {
-        "fill_opacity": 1,
-        "stroke_width": 0,
-        "length": DEFAULT_ARROW_TIP_LENGTH,
-        "start_angle": PI,
-    }
+    fill_opacity = 1
+    stroke_width = 0
+    length = DEFAULT_ARROW_TIP_LENGTH
+    start_angle = PI
 
     def __init__(self, **kwargs):
         Triangle.__init__(self, **kwargs)
@@ -811,13 +776,11 @@ class ArrowTip(Triangle):
 
 
 class Rectangle(Polygon):
-    CONFIG = {
-        "color": WHITE,
-        "height": 2.0,
-        "width": 4.0,
-        "mark_paths_closed": True,
-        "close_new_points": True,
-    }
+    color = WHITE
+    height = 2.0
+    width = 4.0
+    mark_paths_closed = True
+    close_new_points = True
 
     def __init__(self, **kwargs):
         Polygon.__init__(self, UL, UR, DR, DL, **kwargs)
@@ -826,9 +789,7 @@ class Rectangle(Polygon):
 
 
 class Square(Rectangle):
-    CONFIG = {
-        "side_length": 2.0,
-    }
+    side_length = 2.0
 
     def __init__(self, **kwargs):
         digest_config(self, kwargs)
@@ -841,9 +802,7 @@ class Square(Rectangle):
 
 
 class RoundedRectangle(Rectangle):
-    CONFIG = {
-        "corner_radius": 0.5,
-    }
+    corner_radius = 0.5
 
     def __init__(self, **kwargs):
         Rectangle.__init__(self, **kwargs)
