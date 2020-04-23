@@ -12,10 +12,10 @@ from manimlib.for_3b1b_videos.pi_creature import Randolph
 from manimlib.for_3b1b_videos.pi_creature_animations import Blink
 from manimlib.for_3b1b_videos.pi_creature_animations import PiCreatureBubbleIntroduction
 from manimlib.for_3b1b_videos.pi_creature_animations import RemovePiCreatureBubble
+from manimlib.for_3b1b_videos.drawings import SpeechBubble
+from manimlib.for_3b1b_videos.drawings import ThoughtBubble
 from manimlib.mobject.mobject import Group
 from manimlib.mobject.frame import ScreenRectangle
-from manimlib.mobject.svg.drawings import SpeechBubble
-from manimlib.mobject.svg.drawings import ThoughtBubble
 from manimlib.mobject.types.vectorized_mobject import VGroup
 from manimlib.scene.scene import Scene
 from manimlib.utils.rate_functions import squish_rate_func

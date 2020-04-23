@@ -6,7 +6,7 @@ import numpy as np
 from manimlib.constants import *
 from manimlib.mobject.mobject import Mobject
 from manimlib.mobject.geometry import Circle
-from manimlib.mobject.svg.drawings import ThoughtBubble
+from manimlib.for_3b1b_videos.drawings import ThoughtBubble
 from manimlib.mobject.svg.svg_mobject import SVGMobject
 from manimlib.mobject.svg.tex_mobject import TextMobject
 from manimlib.mobject.types.vectorized_mobject import VGroup

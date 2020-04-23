@@ -10,12 +10,12 @@ from manimlib.for_3b1b_videos.pi_creature import Mortimer
 from manimlib.for_3b1b_videos.pi_creature import Randolph
 from manimlib.for_3b1b_videos.pi_creature_animations import Blink
 from manimlib.for_3b1b_videos.pi_creature_scene import PiCreatureScene
+from manimlib.for_3b1b_videos.drawings import Logo
+from manimlib.for_3b1b_videos.drawings import PatreonLogo
 from manimlib.mobject.geometry import DashedLine
 from manimlib.mobject.geometry import Line
 from manimlib.mobject.geometry import Rectangle
 from manimlib.mobject.geometry import Square
-from manimlib.mobject.svg.drawings import Logo
-from manimlib.mobject.svg.drawings import PatreonLogo
 from manimlib.mobject.svg.tex_mobject import TextMobject
 from manimlib.mobject.types.vectorized_mobject import VGroup
 from manimlib.mobject.mobject_update_utils import always_shift

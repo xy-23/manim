@@ -6,7 +6,7 @@ from manimlib.animation.transform import Restore
 from manimlib.constants import WHITE
 from manimlib.constants import BLACK
 from manimlib.mobject.geometry import Circle
-from manimlib.mobject.svg.drawings import Car
+from manimlib.for_3b1b_videos.drawings import Car
 from manimlib.mobject.types.vectorized_mobject import VGroup
 from manimlib.utils.config_ops import digest_config
 from manimlib.utils.space_ops import get_norm

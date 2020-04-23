@@ -25,7 +25,6 @@ from manimlib.animation.indication import *
 from manimlib.animation.movement import *
 from manimlib.animation.numbers import *
 from manimlib.animation.rotation import *
-from manimlib.animation.specialized import *
 from manimlib.animation.transform import *
 from manimlib.animation.update import *
 
@@ -46,7 +45,6 @@ from manimlib.mobject.numbers import *
 from manimlib.mobject.probability import *
 from manimlib.mobject.shape_matchers import *
 from manimlib.mobject.svg.brace import *
-from manimlib.mobject.svg.drawings import *
 from manimlib.mobject.svg.svg_mobject import *
 from manimlib.mobject.svg.tex_mobject import *
 from manimlib.mobject.svg.text_mobject import *
@@ -63,6 +61,8 @@ from manimlib.for_3b1b_videos.common_scenes import *
 from manimlib.for_3b1b_videos.pi_creature import *
 from manimlib.for_3b1b_videos.pi_creature_animations import *
 from manimlib.for_3b1b_videos.pi_creature_scene import *
+from manimlib.for_3b1b_videos.drawings import *
+from manimlib.for_3b1b_videos.specialized import *
 
 from manimlib.once_useful_constructs.arithmetic import *
 from manimlib.once_useful_constructs.combinatorics import *
