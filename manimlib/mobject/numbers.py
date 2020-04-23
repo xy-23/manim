@@ -107,7 +107,11 @@ class DecimalNumber(VMobject):
         ])
 
     def set_value(self, number, **config):
-        full_config = self.initial_config
+        full_config = dict(self.__class__.__dict__)
+        for key in dict(self.__class__.__dict__):
+            if callable(full_config[key]) or (key[:2] == '__' and key[-2:] == '__'):
+                del full_config[key]
+        full_config.update(self.initial_config)
         full_config.update(config)
         new_decimal = DecimalNumber(number, **full_config)
         # Make sure last digit has constant height

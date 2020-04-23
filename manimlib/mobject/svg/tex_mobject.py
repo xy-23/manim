@@ -171,8 +171,13 @@ class TexMobject(SingleStringTexMobject):
         """
         new_submobjects = []
         curr_index = 0
+        config = dict(self.__class__.__dict__)
+        for key in dict(self.__class__.__dict__):
+            if callable(config[key]) or (key[:2] == '__' and key[-2:] == '__'):
+                del config[key]
+        config["alignment"] = ""
         for tex_string in self.tex_strings:
-            sub_tex_mob = SingleStringTexMobject(tex_string)
+            sub_tex_mob = SingleStringTexMobject(tex_string, **config)
             num_submobs = len(sub_tex_mob.submobjects)
             new_index = curr_index + num_submobs
             if num_submobs == 0:
